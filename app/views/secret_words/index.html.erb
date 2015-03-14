@@ -7,7 +7,7 @@
 
 <p>
   <strong>Pista:</strong>
-  Es un animal
+  Es una fruta
 </p>
 
 <p>
@@ -26,11 +26,12 @@
   <%= @incorrect_letter %>
 </p>
 
-
-<% if @incorrect_letter.length < 5 %>
+<% if @correct_letter.length >= @secret.chars.length %>
+  <h1>Ganaste!!! BUENA! *slowly 1 clap*</h1>
+<% elsif @incorrect_letter.length < 5 %>
   <%= form_tag("/secret_words/recibe", method: "post") do %>
     <%= label_tag(:letter) %>
-    <%= text_field_tag(:letter) %>
+    <input type="text" name="letter" id="letter" pattern=".{1,1}" required title="only 1 character">
     <%= submit_tag("Submit") %>
   <% end %>
 <% else %>
