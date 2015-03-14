@@ -1,0 +1,43 @@
+<h1>Ahorcado</h1>
+
+<p>
+  <strong>Reglas:</strong>
+  Tienes que adivinar la palabra, tienes hasta 5 letras incorrectas para hacerlo.
+</p>
+
+<p>
+  <strong>Pista:</strong>
+  Es un animal
+</p>
+
+<p>
+  <strong>Palabra:</strong>
+  <% @unknown_letters.each do |x| %>
+  <%= x %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Letras correctas:</strong>
+  <%= @correct_letter %>
+</p>
+<p>
+  <strong>Letras incorrectas:</strong>
+  <%= @incorrect_letter %>
+</p>
+
+
+<% if @incorrect_letter.length < 5 %>
+  <%= form_tag("/secret_words/recibe", method: "post") do %>
+    <%= label_tag(:letter) %>
+    <%= text_field_tag(:letter) %>
+    <%= submit_tag("Submit") %>
+  <% end %>
+<% else %>
+  <h1>En tu cara!!! Perdiste!!!!!!</h1>
+<% end %>
+
+<p>
+  <%= link_to "Nuevo Juego", secret_words_new_path %>
+</p>
+
